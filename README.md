@@ -2,7 +2,7 @@
 
 ## How to use
 
-Instalar las dependencias de Ionic y registrarse en la Api de Marvel
+Instalar las dependencias de Ionic,node JS, npm y registrarse en la Api de Marvel
 
 ### Autor
 
