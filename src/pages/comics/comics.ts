@@ -5,6 +5,9 @@ import { MarvelService } from '../../providers/marvel-service/marvel-service';
 
 import { ComicViewPage } from '../comicView/comicView';
 
+import { AlertController } from 'ionic-angular';
+
+
 
 @Component({
   selector: 'page-comics',
@@ -22,7 +25,7 @@ export class ComicsPage {
     hide:boolean = true;
     tipo:string = 'Año'
 
-    constructor(public navCtrl: NavController, public marvelService: MarvelService) {
+    constructor(public navCtrl: NavController, private alertCtrl: AlertController, public marvelService: MarvelService) {
         this.pushPage = ComicViewPage;
         this.params = {}
         this.getComics();
@@ -99,7 +102,7 @@ export class ComicsPage {
         let texto = ev.target.value;
         this.searchComic = texto;
         if(texto.length > 0){
-            console.log('buscando por nombre....');
+            console.log('buscando por nombre....'+texto);
             this.marvelService.searchComicsByName(texto,undefined,false).then(
                 res => {
                     this.comics = res.data.results;
@@ -114,11 +117,20 @@ export class ComicsPage {
         }
     }
 
+    presentAlert() {
+      let alert = this.alertCtrl.create({
+        title: 'Año Invalido',
+        subTitle: 'Debe ingresar año en formato de 4 digitos, eg: 2000',
+        buttons: ['Cerrar']
+      });
+      alert.present();
+    }
+
     getSearchedComicsbyYear(ev: any) {
         let year = ev.target.value;
         this.searchByYear = year;
         if(year.toString().length == 4){
-            console.log('buscando por año....');
+            console.log('buscando por año....'+year.toString());
             this.marvelService.searchComicsByYear(year,undefined,false).then(
                 res => {
                     this.comics = res.data.results;
@@ -132,10 +144,13 @@ export class ComicsPage {
           this.getComics();
         }
         if(year.toString().length > 4){
+            this.presentAlert();
             console.log("Resultados improbables debe ser numero de 4 digitos")
         }
 
     }
+
+
 
 
 }
