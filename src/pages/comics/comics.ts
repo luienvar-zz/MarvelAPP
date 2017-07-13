@@ -44,16 +44,17 @@ export class ComicsPage {
                 this.comics = res.data.results;
                 this.countComic = res.data.count;
                 this.offset = res.data.offset;
+                this.searchByYear = 0;
+                this.searchComic = '';
+
         });
     }
 
     doInfinite(infiniteScroll) {
-        console.log('searchComic '+this.searchComic);
-        console.log('searchComicbyYear '+this.searchByYear);
 
         if (this.searchComic.length > 0 && this.hide == true)
             {
-                console.log("Buscando mas comics....");
+                console.log("Buscando mas comics por nombre...."+this.searchComic);
                 this.offset += this.countComic
                 this.marvelService.searchComicsByName(this.searchComic,this.offset).then(res =>{
                     this.countComic = res.data.count;
@@ -65,9 +66,9 @@ export class ComicsPage {
                     infiniteScroll.complete();
                 }) 
             }
-        if (this.searchByYear.toString().length > 0 && this.hide == false)
+        if (this.searchByYear.toString().length == 4 && this.hide == false)
             {
-                console.log("Buscando mas comics por año....");
+                console.log("Buscando mas comics por año...."+this.searchByYear);
                 this.offset += this.countComic
                 this.marvelService.searchComicsByYear(this.searchByYear,this.offset).then(res =>{
                     this.countComic = res.data.count;
@@ -79,7 +80,8 @@ export class ComicsPage {
                     infiniteScroll.complete();
                 }) 
             }
-        else {
+        if ( this.searchByYear < 4 && this.searchComic.length == 0 ) {
+            console.log("Buscando mas comics....");
             this.offset += this.countComic
             this.marvelService.getComics(this.offset).then(res =>{
                 this.countComic = res.data.count;
