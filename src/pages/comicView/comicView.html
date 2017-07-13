@@ -1,0 +1,34 @@
+<ion-header>
+  <ion-navbar color='custom-color'>
+    <ion-title align='center'><font face="Comic sans MS" size=+5>COMIC</font></ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding class="myBody">
+  <ion-card *ngFor="let revista of comic">
+  <img src="{{revista.thumbnail.path}}.{{revista.thumbnail.extension}}">
+  <ion-card-content>
+    <ion-card-title>
+      {{revista.title}}
+      </ion-card-title>
+    <p>
+      {{revista.description}}
+    </p>
+    <p>
+      SERIE: {{revista.series.name}}
+    </p>
+    <p>
+      PRECIO: {{revista.prices[0].price}}
+    </p>
+    <p>
+      PAGINAS: {{revista.pageCount}}
+    </p>
+    <ion-list>
+      <ion-item><ion-title>PERSONAJES</ion-title></ion-item>
+      <ion-item *ngFor="let personaje of revista.characters.items">
+        <h2>{{personaje.name}}</h2>
+      </ion-item>
+  </ion-list>
+  </ion-card-content>
+</ion-card>
+</ion-content>
