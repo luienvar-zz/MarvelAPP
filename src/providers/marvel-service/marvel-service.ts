@@ -16,7 +16,7 @@ import CryptoJS from 'crypto-js'
 @Injectable()
 export class MarvelService {
 
-  url = 'http://gateway.marvel.com/v1/public/comics';
+  url = 'https://gateway.marvel.com/v1/public/comics';
   publicKey = 'edea908b67dcc49867c72e11b55c21b1';
   privateKey = 'fe6d5e2f967dc15dd14bf82723518c913bbbc6b5';
   timestamp = Date.now();
