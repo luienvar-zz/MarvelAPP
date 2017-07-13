@@ -1,6 +1,6 @@
 <ion-header>
   <ion-navbar color='custom-color'>
-    <ion-title align='center'><font face="Comic sans MS" size=+5>MARVEL COMICS</font></ion-title>
+    <ion-title align='center'><font face="Comic sans MS">MARVEL COMICS</font></ion-title>
   </ion-navbar>
 </ion-header>
 
@@ -22,7 +22,7 @@
 </ion-content>
 
 <ion-footer>
-  <button color='custom-color2' ion-button full (click)="ngIfCtrl()"><font face="Comic sans MS" size=+3>Cambiar a Buscador por {{tipo}}</font></button>
+  <button color='custom-color2' ion-button full (click)="ngIfCtrl()"><font face="Comic sans MS">Cambiar a Buscador por {{tipo}}</font></button>
   <ion-searchbar  *ngIf="hide" [ngModel]="searchComic" (ionInput)="getSearchedComics($event)" placeholder="Buscar por Nombre"></ion-searchbar>
   <ion-searchbar searchbar-ios-toolbar-input-background='custom-color'  *ngIf="!hide" [ngModel]="searchComicbyYear" (ionInput)="getSearchedComicsbyYear($event)" placeholder="Buscar por Año" type='number'></ion-searchbar>
 </ion-footer>
